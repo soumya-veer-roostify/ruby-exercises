@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/beaver'
+require './initialize/lib/beaver.rb'
 
 class BeaverTest < Minitest::Test
   def test_it_exists
