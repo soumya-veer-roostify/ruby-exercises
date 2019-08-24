@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/dog'
+require './initialize/lib/dog'
 
 class DogTest < Minitest::Test
   def test_it_exists
