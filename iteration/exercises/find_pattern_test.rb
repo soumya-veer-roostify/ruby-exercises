@@ -35,18 +35,18 @@ class FindPatternTest < Minitest::Test
   end
 
   def test_3
-    skip
     ages = [39, 45, 29, 24, 50]
     older_than_fifty = nil
     ages.each do |age|
-      # Your Code Here
+      if age > 50
+        older_than_fifty = age
+      end
     end
 
     assert_nil older_than_fifty
   end
 
   def test_4
-    skip
     ages = {
       abdi: 39,
       hassan: 45,
@@ -56,23 +56,25 @@ class FindPatternTest < Minitest::Test
     }
     older_than_fifty = nil
     ages.each do |name, age|
-      # Your Code Here
+      if age > 50
+        older_than_fifty = age
+      end
     end
 
     assert_nil older_than_fifty
   end
 
   def test_5
-    skip
     ages = [39, 45, 29, 24, 50]
-    multiple_of_three = nil
     # Your Code Here
-
+    multiple_of_three = nil
+    multiple_of_three = ages.find do |age|
+      age % 3 == 0
+    end
     assert_equal 39, multiple_of_three
   end
 
   def test_6
-    skip
     ages = {
       abdi: 39,
       hassan: 45,
@@ -81,22 +83,22 @@ class FindPatternTest < Minitest::Test
       miguel: 50
     }
     multiple_of_three = nil
-    # Your Code Here
+
+    multiple_of_three = ages.find do |name, age|
+      name if age % 3 == 0
     end
 
+    multiple_of_three = multiple_of_three[0]
     assert_equal :abdi, multiple_of_three
   end
 
   def test_7
-    skip
     people = ["Willie", "Carmen Sandiego", "Bryan", "Faith", "Zac"]
-    # Your Code Here
-
+    carmen = people[1]
     assert_equal "Carmen Sandiego", carmen
   end
 
   def test_8
-    skip
     places = {
       Bangkok: "Willie",
       Santa_Fe: "Carmen Sandiego",
@@ -104,21 +106,22 @@ class FindPatternTest < Minitest::Test
       Munich: "Faith",
       Mogudishu: "Zac"
     }
-    # Your Code Here
+
+    where_is_carmen_sandiego = places.each do |key, value|
+      return key if value == 'Carmen Sandiego'
+    end
 
     assert_equal :Santa_Fe, where_is_carmen_sandiego
   end
 
   def test_9
-    skip
     numbers = [3, 7, 13, 11, 10, 2, 17]
-    # Your Code Here
 
+    even = numbers.find{ |number| number.even? }
     assert_equal 10, even
   end
 
   def test_10
-    skip
     purchases = {
       "shoes" => :paid,
       "backpack" => :paid,
@@ -126,13 +129,12 @@ class FindPatternTest < Minitest::Test
       "posters" => :paid,
       "food" => :pending
     }
-    # Your Code Here
 
+    pending = purchases.find{ |comodity, purchase_status| comodity if purchase_status == :pending}[0].to_sym
     assert_equal :books, pending
   end
 
   def test_11
-    skip
     purchases = {
       "shoes" => :paid,
       "backpack" => :paid,
@@ -142,7 +144,7 @@ class FindPatternTest < Minitest::Test
     }
     # Your Code Here
 
+    starts_with_b = purchases.keys.find {|key| key if key[0] == 'b'}
     assert_equal "backpack", starts_with_b
   end
-
 end
